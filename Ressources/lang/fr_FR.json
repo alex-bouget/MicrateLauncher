@@ -1,0 +1,64 @@
+{
+	"Color": {
+		"Main": "#5EA137",
+		"Play": "#A39A95",
+		"Version": "#755338",
+		"Session": "#58A034",
+		"Profile": "#515279",
+		"Loading": "#07D3CD",
+		"Config": "#CD5C5C",
+		"Button": "#8E44AD",
+        "Useless": "#FFB300"
+	},
+	"Font": [
+		"Times New Roman",
+		"Candara"
+	],
+	"Text": {
+		"Title": "Micrate Launcher (par MisterMine01)",
+		"Error": [
+			"Session deja creer",
+			"Session n'existe pas",
+			"Trop de profil",
+			"Le profil n'existe pas",
+			"Vous n'avez pas selectionner le bon profil"
+		],
+		"MainMenu": [
+			"Jouer",
+			"Nom: ",
+			"Session: ",
+			"Version: ",
+			"Menu Principale",
+			"Profil",
+			"Session",
+			"Version",
+			"Config",
+			"Credit",
+			"JVM"
+		],
+		"Much": [
+			"Utiliser",
+			"Supprimer",
+			"Fenetre Inutile",
+			"Supprimer ",
+			" ?",
+			"Argument java ?",
+			"Terminer"
+		],
+		"ProfileMenu": [
+			"Changer le skin",
+			"Creer un profil",
+			"Identifiant",
+			"Mot de passe"
+		],
+		"SessionMenu": [
+			"Creer Session",
+			"Nom"
+		],
+		"ConfigMenu": [
+			"Sauvegarder config",
+			"Nommer la config"
+		]
+	},
+	"Perspective": "yes"
+}
