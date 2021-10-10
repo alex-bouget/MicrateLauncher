@@ -1,4 +1,4 @@
-from .jdk import install as jdkInstall
+from .jdk import install as jdk_install
 from .Profile import ProfileLib
 from .Session import SessionLib
 from .Version import VersionLib
@@ -9,10 +9,22 @@ import json
 
 
 def empty(arg):
+    """ empty function for exception
+
+    :param arg:
+    """
     pass
 
 
 class MicrateLib:
+    """Library for Micrate Launcher
+
+    :param str profile_folder: folder where profile was save
+    :param str session_folder: folder where session was save
+    :param str minecraft_folder: folder where minecraft was downloaded
+    :param str java_folder: folder where java was downloaded
+    :param str settings_folder: folder where settings was save
+    """
     def __init__(self, profile_folder, session_folder, minecraft_folder, java_folder, settings_folder):
         self.MinecraftFolder = minecraft_folder
         self.JavaFolder = java_folder
@@ -23,12 +35,19 @@ class MicrateLib:
         self.Version = VersionLib(minecraft_folder)
         self.Session = SessionLib(session_folder)
 
-    def startMC(self, callback):
+    def start_mc(self, callback):
+        """Start Minecraft
+
+        Get login_data, session and the version, download java and Minecraft and start the Game
+
+        :param dict callback: callback for display information (Finish, setStatus, setProgress, setMax)
+        :return:
+        """
         self.SettingsStarting = [self.Profile.login_data, self.Session.getSession(), self.Version.version]
 
         def start(micrate_self, call_back):
             if len(os.listdir(micrate_self.JavaFolder)) == 0:
-                jdkInstall(version="8", Callback=call_back, _JDK_DIR=micrate_self.JavaFolder)
+                jdk_install(version="8", Callback=call_back, _JDK_DIR=micrate_self.JavaFolder)
             install.install_minecraft_version(micrate_self.SettingsStarting[2], micrate_self.MinecraftFolder, call_back)
             micrate_command = command.get_minecraft_command(micrate_self.SettingsStarting[2],
                                                             micrate_self.MinecraftFolder,
@@ -56,7 +75,11 @@ class MicrateLib:
         thread.daemon = True
         thread.start()
 
-    def createConfig(self, name):
+    def create_config(self, name):
+        """Create a game config (user, session, version)
+
+        :param str name: name of the new config
+        """
         settings_config = [self.Profile.login_data["selectedProfile"]["name"], self.Session.getSession(),
                            self.Version.version]
         if os.path.isfile(os.path.join(self.SettingsFolder, "config.json")):
@@ -72,24 +95,41 @@ class MicrateLib:
             with open(os.path.join(self.SettingsFolder, "config.txt"), "w") as file:
                 file.write(name)
 
-    def setConfig(self, name):
+    def set_config(self, name):
+        """Load a config
+
+        :param str name: Name of the config
+        """
         config = json.load(open(os.path.join(self.SettingsFolder, "config.json")))
         if config.get(name) is not None:
             settings_config = config[name]
             self.Profile.setProfile(
-                [key for key, value in self.Profile.allProfile().items() if value == settings_config[0]][0])
+                [
+                    key
+                    for key, value in self.Profile.allProfile().items()
+                    if value == settings_config[0]
+                ][0]
+            )
             self.Session.setSession(settings_config[1])
             self.Version.setVersion(settings_config[2])
             with open(os.path.join(self.SettingsFolder, "config.txt"), "w") as file:
                 file.write(name)
 
-    def getAllConfig(self):
+    def get_all_config(self):
+        """ Get the saved config
+
+        :return: list items of config
+        """
         if os.path.isfile(os.path.join(self.SettingsFolder, "config.json")):
             return json.load(open(os.path.join(self.SettingsFolder, "config.json"))).items()
         else:
             return {}.items()
 
-    def deleteConfig(self, name):
+    def delete_config(self, name):
+        """Delete a config
+
+        :param str name: Name of config
+        """
         if os.path.isfile(os.path.join(self.SettingsFolder, "config.json")):
             config = json.load(open(os.path.join(self.SettingsFolder, "config.json")))
             if config.get(name) is not None:

@@ -38,7 +38,7 @@ class MicrateLauncher(Tk):
                               )  # load Micrate library
         #  create default file
         if os.path.isfile(os.path.join(self.Folders.get_folder("settings"), "config.txt")):
-            self.Lib.setConfig(open(os.path.join(self.Folders.get_folder("settings"), "config.txt")).read())
+            self.Lib.set_config(open(os.path.join(self.Folders.get_folder("settings"), "config.txt")).read())
         if not os.path.isfile(os.path.join(self.Folders.get_folder("settings"), "JVMarg.txt")):
             open(os.path.join(self.Folders.get_folder("settings"), "JVMarg.txt"), "w").write(
                 "-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20" +
@@ -48,7 +48,10 @@ class MicrateLauncher(Tk):
         self.bind("<Configure>", self.reload)
 
     def reload(self, evt):
-        """Reload all window"""
+        """Reload all window
+
+        :param evt: tkinter event
+        """
         self.Windows.reload(evt)  # Reload Canvas in the window
 
     def start_launcher(self):

@@ -43,11 +43,11 @@ class ConfigMenu(DataMenu):
         for config in self.Config:
             config.destroy()
         self.Config = []
-        for name, value in self.ConfigSystem.getAllConfig():
+        for name, value in self.ConfigSystem.get_all_config():
             self.Config.append(ConfigMenu.Configer(self.Frame, self.Color, name, value,
                                                    {"Refresh": self.ReloadFrame,
-                                                    "Delete": self.ConfigSystem.deleteConfig,
-                                                    "Use": self.ConfigSystem.setConfig}))
+                                                    "Delete": self.ConfigSystem.delete_config,
+                                                    "Use": self.ConfigSystem.set_config}))
 
     def reload(self):
         for config in self.Config:

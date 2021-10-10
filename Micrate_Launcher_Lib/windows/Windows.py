@@ -47,7 +47,7 @@ class Micrate_Window:
         self.unplace()
     def createconfig(self):
         string = UselessAsker.Asker.get(True, "name")
-        self.SystemLib.createConfig(string["name"])
+        self.SystemLib.create_config(string["name"])
         self.Page["Config"].ReloadFrame()
 
     def JVM(self):
@@ -59,7 +59,7 @@ class Micrate_Window:
         for widget in self.Main.winfo_children() + self.Button:
             widget.configure(state="disabled")
         self.Page["LoadBar"].reload()
-        self.SystemLib.startMC({"setStatus": self.Page["LoadBar"].setStatus,
+        self.SystemLib.start_mc({"setStatus": self.Page["LoadBar"].setStatus,
                                 "setMax": self.Page["LoadBar"].setMax,
                                 "setProgress": self.Page["LoadBar"].setProgress,
                                 "Finish": self.play_finish})
