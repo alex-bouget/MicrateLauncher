@@ -8,6 +8,7 @@ from .windows.Windows import Micrate_Window
 
 
 class MicrateLauncher(Tk):
+    """Launcher's window"""
     def __init__(self):
         super().__init__()
         self.Folders = SuperFolders()
@@ -15,19 +16,18 @@ class MicrateLauncher(Tk):
         self.title(lang["Text"]["Title"])
         self.configure(height=480, width=720)
         self.Color = lang["Color"]
-        if len(sys.argv) > 1:
+        if len(sys.argv) > 1:  # decode arguments
             argument = sys.argv
             del argument[0]
             dico = {}
             for arg in argument:
                 dico[arg.split("=")[0]] = arg.split("=")[1]
             for folders in ["accounts", "session", "Minecraft", "java", "settings"]:
-                try:
+                try:  # add the folder or use default folders for each argument
                     self.Folders.add_folder(folders, dico[folders])
                 except KeyError:
                     self.Folders.add_folder(folders, folders)
-
-        else:
+        else:  # use default folder
             for folders in ["accounts", "session", "Minecraft", "java", "settings"]:
                 self.Folders.add_folder(folders, folders)
         self.Lib = MicrateLib(self.Folders.get_folder("accounts"),
@@ -35,8 +35,8 @@ class MicrateLauncher(Tk):
                               self.Folders.get_folder("Minecraft"),
                               self.Folders.get_folder("java"),
                               self.Folders.get_folder("settings"),
-                              )
-
+                              )  # load Micrate library
+        #  create default file
         if os.path.isfile(os.path.join(self.Folders.get_folder("settings"), "config.txt")):
             self.Lib.setConfig(open(os.path.join(self.Folders.get_folder("settings"), "config.txt")).read())
         if not os.path.isfile(os.path.join(self.Folders.get_folder("settings"), "JVMarg.txt")):
@@ -44,12 +44,14 @@ class MicrateLauncher(Tk):
                 "-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20" +
                 " -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M")
 
-        self.Windows = Micrate_Window(self, self.Lib, self.Color)
+        self.Windows = Micrate_Window(self, self.Lib, self.Color)  # load Micrate windows
         self.bind("<Configure>", self.reload)
 
     def reload(self, evt):
-        self.Windows.reload(evt)
+        """Reload all window"""
+        self.Windows.reload(evt)  # Reload Canvas in the window
 
     def start_launcher(self):
+        """launch the tkinter's mainloop()."""
         self.mainloop()
         sys.exit()
