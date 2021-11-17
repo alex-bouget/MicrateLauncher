@@ -6,6 +6,11 @@ from .Lang import lang
 
 
 class ProfileLib:
+    """Profile Library for Micrate Launcher
+
+    :param str profile_folder: folder where profile was save
+    :param str settings_folder: folder where settings was save
+    """
     def __init__(self, profile_folder, settings_folder):
         self.folders = profile_folder
         if not os.path.isfile(os.path.join(settings_folder, "table.tbl")):
@@ -13,6 +18,10 @@ class ProfileLib:
         self.encoder = encode.Encoder(os.path.join(settings_folder, "table.tbl"))
 
     def allProfile(self):
+        """Get all profile
+
+        :return dict: keys is profile id, value is username
+        """
         profile = {}
         for i in os.listdir(self.folders):
             profile[i.split(".")[0]] = self.encoder.decode_str(
@@ -20,6 +29,12 @@ class ProfileLib:
         return profile
 
     def createProfile(self, user, password):
+        """Add profile
+
+        :param user: minecraft username
+        :param password: minecraft password
+        :return:
+        """
         connection = account.login_user(user, password)
         try:
             var = connection["error"]
@@ -39,12 +54,22 @@ class ProfileLib:
                 return ["FileExistsError", lang["Text"]["Error"][2]]
 
     def deleteProfile(self, number):
+        """delete profile with profile id
+
+        :param number: profile id
+        :return:
+        """
         if os.path.exists(os.path.join(self.folders, str(number) + ".dat")):
             os.remove(os.path.join(self.folders, str(number) + ".dat"))
         else:
             return ["NameError", lang["Text"]["Error"][3]]
 
     def setProfile(self, number):
+        """set profile with profile id
+
+        :param number: profile id
+        :return:
+        """
         if os.path.exists(os.path.join(self.folders, str(number) + ".dat")):
             with open(os.path.join(self.folders, str(number) + ".dat")) as f:
                 decoded = self.encoder.encode_split(f.read())
@@ -59,6 +84,12 @@ class ProfileLib:
             return ["NameError", lang[26]]
 
     def changeSkin(self, skin, username):
+        """change user skin
+
+        :param skin: file path
+        :param username: username
+        :return:
+        """
         if username == self.login_data['selectedProfile']['name']:
             if skin != '':
                 account.upload_skin(self.login_data['selectedProfile']['id'], self.login_data['accessToken'], skin)
