@@ -4,7 +4,7 @@ import os
 from .Lang import lang
 from .Lib.MM1_Lib.folders import SuperFolders
 from .Lib.Lib import MicrateLib
-from .windows.Windows import Micrate_Window
+from .windows.Windows import MicrateWindow
 
 
 class MicrateLauncher(Tk):
@@ -44,7 +44,7 @@ class MicrateLauncher(Tk):
                 "-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20" +
                 " -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M")
 
-        self.Windows = Micrate_Window(self, self.Lib, self.Color)  # load Micrate windows
+        self.Windows = MicrateWindow(self, self.Lib, self.Color)  # load Micrate windows
         self.bind("<Configure>", self.reload)
 
     def reload(self, evt):

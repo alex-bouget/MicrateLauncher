@@ -4,6 +4,9 @@ from .Lang import lang
 
 
 class VersionMenu(DataMenu):
+    """Menu Version
+
+    """
     class Versionner(DataMenu.Dataer):
         def __init__(self, root, version_color, version_name, callback):
             super().__init__(root, version_color)
