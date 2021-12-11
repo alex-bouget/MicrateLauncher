@@ -1,7 +1,7 @@
 from .MM1_Lib import encode
 import os
 import random
-from .Mcl_lib import account
+from minecraft_launcher_lib import account
 from ..Lang import lang
 
 

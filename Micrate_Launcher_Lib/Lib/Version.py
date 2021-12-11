@@ -1,4 +1,4 @@
-from .Mcl_lib import utils
+from minecraft_launcher_lib import utils
 import os
 
 

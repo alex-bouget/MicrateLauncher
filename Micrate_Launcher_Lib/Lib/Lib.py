@@ -1,8 +1,8 @@
-from .jdk import install as jdk_install
+from jdk import install as jdk_install
 from .Profile import ProfileLib
 from .Session import SessionLib
 from .Version import VersionLib
-from .Mcl_lib import install, command
+from minecraft_launcher_lib import install, command
 from threading import Thread
 import os
 import json
@@ -56,29 +56,32 @@ class MicrateLib:
 
         def start(micrate_self: MicrateLib, call_back: dict):
             if len(os.listdir(micrate_self.JavaFolder)) == 0:
-                jdk_install(version="8", Callback=call_back, _JDK_DIR=micrate_self.JavaFolder)
+                call_back["setStatus"]("Download Java")
+                call_back["setMax"](1)
+                call_back["setProgress"](0)
+                jdk_install(version="8", path=micrate_self.JavaFolder)
             install.install_minecraft_version(micrate_self.settings_starting[2],
                                               micrate_self.MinecraftFolder, call_back)
-            micrate_command = command.get_minecraft_command(micrate_self.settings_starting[2],
-                                                            micrate_self.MinecraftFolder,
-                                                            {"username": micrate_self.settings_starting[0][
-                                                                "selectedProfile"]["name"],
-                                                             "uuid": micrate_self.settings_starting[0][
-                                                                 "selectedProfile"]["id"],
-                                                             "token": micrate_self.settings_starting[0]["accessToken"],
-                                                             "executablePath": os.path.join(
-                                                                 micrate_self.JavaFolder, os.listdir(
-                                                                     micrate_self.JavaFolder)[0], "bin", "java"),
-                                                             "launcherName": "Micrate_Launcher",
-                                                             "launcherVersion": "2.0",
-                                                             "gameDirectory": os.path.join(micrate_self.SessionFolder,
-                                                                                           micrate_self.
-                                                                                           settings_starting[1]),
-                                                             "jvmArguments": open(os.path.join(micrate_self.
-                                                                                               SettingsFolder,
-                                                                                               "JVMarg.txt")).read().
-                                                            split(" ")
-                                                             })
+            minecraft_command_data = {
+                "username": micrate_self.settings_starting[0]["selectedProfile"]["name"],
+                "uuid": micrate_self.settings_starting[0]["selectedProfile"]["id"],
+                "token": micrate_self.settings_starting[0]["accessToken"],
+                "executablePath": os.path.join(micrate_self.JavaFolder,
+                                               os.listdir(micrate_self.JavaFolder)[0],
+                                               "bin",
+                                               "java"),
+                "launcherName": "Micrate_Launcher",
+                "launcherVersion": "2.0",
+                "gameDirectory": os.path.join(micrate_self.SessionFolder,
+                                              micrate_self.settings_starting[1]),
+                "jvmArguments": open(os.path.join(micrate_self.SettingsFolder,
+                                                  "JVMarg.txt")).read().split(" ")
+            }
+
+            micrate_command = command.\
+                get_minecraft_command(micrate_self.settings_starting[2],
+                                      micrate_self.MinecraftFolder,
+                                      minecraft_command_data)
             call_back.get("Finish", empty)(micrate_command)
 
         thread = Thread(target=lambda call=callback: start(self, call))
