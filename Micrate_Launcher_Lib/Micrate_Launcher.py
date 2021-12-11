@@ -52,6 +52,9 @@ class MicrateLauncher(Tk):
         #  create default file
         if os.path.isfile(os.path.join(self.Folders.get_folder("settings"), "config.txt")):
             self.Lib.set_config(open(os.path.join(self.Folders.get_folder("settings"), "config.txt")).read())
+        if not os.path.isfile(os.path.join(self.Folders.get_folder("Minecraft"), "Launcher_profiles.json")):
+            open(os.path.join(self.Folders.get_folder("Minecraft"), "Launcher_profiles.json")).write(
+                "{}")
         if not os.path.isfile(os.path.join(self.Folders.get_folder("settings"), "JVMarg.txt")):
             open(os.path.join(self.Folders.get_folder("settings"), "JVMarg.txt"), "w").write(
                 "-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20" +
