@@ -43,18 +43,18 @@ class SessionMenu(DataMenu):
     def Create(self):
         session = UselessAsker.Asker.get(True, lang["Text"]["SessionMenu"][1])
         if session != "":
-            self.SessionSystem.createSession(session[lang["Text"]["SessionMenu"][1]])
+            self.SessionSystem.create_session(session[lang["Text"]["SessionMenu"][1]])
         self.ReloadFrame()
 
     def ReloadFrame(self):
         for session in self.Session:
             session.destroy()
         self.Session = []
-        for SessionName in self.SessionSystem.allSession():
+        for SessionName in self.SessionSystem.all_session():
             self.Session.append(
-                SessionMenu.Sessioner(self.Frame, self.Color, SessionName, {"Delete": self.SessionSystem.deleteSession,
+                SessionMenu.Sessioner(self.Frame, self.Color, SessionName, {"Delete": self.SessionSystem.delete_session,
                                                                             "Refresh": self.ReloadFrame,
-                                                                            "Use": self.SessionSystem.setSession}
+                                                                            "Use": self.SessionSystem.set_session}
                                       ))
         self.reload()
 

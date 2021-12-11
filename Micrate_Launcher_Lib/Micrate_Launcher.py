@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk, Event
 import sys
 import os
 from .Lang import lang
@@ -7,9 +7,22 @@ from .Lib.Lib import MicrateLib
 from .windows.Windows import MicrateWindow
 
 
+"""Window of the Micrate Launcher"""
+
+
 class MicrateLauncher(Tk):
-    """Launcher's window"""
+    Folders: SuperFolders
+    """All Folder needed for the launcher,
+    accounts, java, Minecraft, session, settings"""
+    Color: dict
+    """All Color for each canvas, findable in Ressources/lang/*.json"""
+    Lib: MicrateLib
+    """Library of the launcher"""
+    Windows: MicrateWindow
+    """Canvas for the launcher"""
+
     def __init__(self):
+        """Constructor"""
         super().__init__()
         self.Folders = SuperFolders()
         self.iconbitmap("Ressources/ico.ico")
@@ -47,11 +60,8 @@ class MicrateLauncher(Tk):
         self.Windows = MicrateWindow(self, self.Lib, self.Color)  # load Micrate windows
         self.bind("<Configure>", self.reload)
 
-    def reload(self, evt):
-        """Reload all window
-
-        :param evt: tkinter event
-        """
+    def reload(self, evt: Event):
+        """Reload all window"""
         self.Windows.reload(evt)  # Reload Canvas in the window
 
     def start_launcher(self):

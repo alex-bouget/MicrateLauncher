@@ -95,7 +95,7 @@ class MicrateWindow:
         except:
             pass
         try:
-            self.Main.LabelInfo[1].configure(text=lang["Text"]["MainMenu"][2] + self.SystemLib.Session.getSession())
+            self.Main.LabelInfo[1].configure(text=lang["Text"]["MainMenu"][2] + self.SystemLib.Session.get_session())
         except:
             pass
         try:

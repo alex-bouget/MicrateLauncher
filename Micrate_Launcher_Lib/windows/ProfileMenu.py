@@ -67,23 +67,23 @@ class ProfileMenu(DataMenu):
         self.ReloadFrame()
 
     def Skin(self, account_name):
-        self.ProfileSystem.changeSkin(filedialog.askopenfilename(defaultextension=".png"), account_name)
+        self.ProfileSystem.change_skin(filedialog.askopenfilename(defaultextension=".png"), account_name)
 
     def Create(self):
         profile = UselessAsker.Asker.get(True, lang["Text"]["ProfileMenu"][2], lang["Text"]["ProfileMenu"][3])
-        self.ProfileSystem.createProfile(profile[lang["Text"]["ProfileMenu"][2]],
-                                         profile[lang["Text"]["ProfileMenu"][3]])
+        self.ProfileSystem.create_profile(profile[lang["Text"]["ProfileMenu"][2]],
+                                          profile[lang["Text"]["ProfileMenu"][3]])
         self.ReloadFrame()
 
     def ReloadFrame(self):
         for profile in self.Profile:
             profile.destroy()
         self.Profile = []
-        for key, value in self.ProfileSystem.allProfile().items():
+        for key, value in self.ProfileSystem.all_profile().items():
             self.Profile.append(
-                ProfileMenu.Profiler(self.Frame, self.Color, key, value, {"Delete": self.ProfileSystem.deleteProfile,
+                ProfileMenu.Profiler(self.Frame, self.Color, key, value, {"Delete": self.ProfileSystem.delete_profile,
                                                                           "Refresh": self.ReloadFrame,
-                                                                          "Use": self.ProfileSystem.setProfile,
+                                                                          "Use": self.ProfileSystem.set_profile,
                                                                           "Skin": self.Skin}
                                      ))
         self.reload()

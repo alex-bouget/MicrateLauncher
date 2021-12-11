@@ -44,14 +44,14 @@ class VersionMenu(DataMenu):
         del self.Version
         self.Version = []
         if version_type == "installed":
-            for VersionName in self.VersionSystem.allInstalledVersion():
+            for VersionName in self.VersionSystem.all_installed_version():
                 self.Version.append(
-                    VersionMenu.Versionner(self.Frame, self.Color, VersionName, {"Use": self.VersionSystem.setVersion}))
+                    VersionMenu.Versionner(self.Frame, self.Color, VersionName, {"Use": self.VersionSystem.set_version}))
         else:
-            for VersionName in [VersionID["id"] for VersionID in self.VersionSystem.allVersion() if
+            for VersionName in [VersionID["id"] for VersionID in self.VersionSystem.all_version() if
                                 VersionID["type"] == version_type]:
                 self.Version.append(
-                    VersionMenu.Versionner(self.Frame, self.Color, VersionName, {"Use": self.VersionSystem.setVersion}))
+                    VersionMenu.Versionner(self.Frame, self.Color, VersionName, {"Use": self.VersionSystem.set_version}))
         self.r = 0
         self.reload()
 
