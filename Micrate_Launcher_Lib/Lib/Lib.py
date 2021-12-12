@@ -52,22 +52,41 @@ class MicrateLib:
         """Start Minecraft
         Get login_data, session and the version, download java and Minecraft and start the Game
         """
+
+        def get_minecraft_java_version(minecraft_folder: str, version: str) -> str:
+            js = json.load(open(os.path.join(minecraft_folder, "versions", version, version+".json")))
+            if "javaVersion" not in js.keys():
+                if "inheritsFrom" not in js.keys():
+                    raise ValueError("No javaVersion")
+                return get_minecraft_java_version(minecraft_folder, js["inheritsFrom"])
+            return str(js["javaVersion"]["majorVersion"])
+
         self.settings_starting = [self.Profile.login_data, self.Session.get_session(), self.Version.version]
 
         def start(micrate_self: MicrateLib, call_back: dict):
-            if len(os.listdir(micrate_self.JavaFolder)) == 0:
-                call_back["setStatus"]("Download Java")
-                call_back["setMax"](1)
-                call_back["setProgress"](0)
-                jdk_install(version="8", path=micrate_self.JavaFolder)
             install.install_minecraft_version(micrate_self.settings_starting[2],
                                               micrate_self.MinecraftFolder, call_back)
+            jvm_version = get_minecraft_java_version(micrate_self.MinecraftFolder,
+                                                     micrate_self.settings_starting[2])
+            jvm_data = [
+                i
+                for i in os.listdir(micrate_self.JavaFolder)
+                if open(os.path.join(micrate_self.JavaFolder, i, "java_v")).read() == jvm_version
+            ]
+
+            if len(jvm_data) == 0:
+                call_back["setStatus"]("Download Java " + str(jvm_version))
+                call_back["setMax"](1)
+                call_back["setProgress"](0)
+                jvm_using = jdk_install(version=jvm_version, path=micrate_self.JavaFolder)
+                open(os.path.join(jvm_using, "java_v"), "w").write(jvm_version)
+            else:
+                jvm_using = os.path.join(micrate_self.JavaFolder, jvm_data[0])
             minecraft_command_data = {
                 "username": micrate_self.settings_starting[0]["selectedProfile"]["name"],
                 "uuid": micrate_self.settings_starting[0]["selectedProfile"]["id"],
                 "token": micrate_self.settings_starting[0]["accessToken"],
-                "executablePath": os.path.join(micrate_self.JavaFolder,
-                                               os.listdir(micrate_self.JavaFolder)[0],
+                "executablePath": os.path.join(jvm_using,
                                                "bin",
                                                "java"),
                 "launcherName": "Micrate_Launcher",

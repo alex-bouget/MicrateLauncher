@@ -63,7 +63,7 @@ class MicrateLauncher(Tk):
         self.Windows = MicrateWindow(self, self.Lib, self.Color)  # load Micrate windows
         self.bind("<Configure>", self.reload)
 
-    def reload(self, evt: Event):
+    def reload(self, evt: Event or None):
         """Reload all window"""
         self.Windows.reload(evt)  # Reload Canvas in the window
 

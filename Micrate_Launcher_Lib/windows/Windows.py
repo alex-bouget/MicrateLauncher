@@ -25,6 +25,8 @@ class MicrateWindow:
         self.SystemLib = system_lib
         self.root = root
         self.Main = MainMenu(root, color_lib["Main"], color_lib["Play"])
+        self.old_h = 0
+        self.old_w = 0
         self.Page = {
             "Version": VersionMenu(root, color_lib["Version"], system_lib.Version),
             "Profile": ProfileMenu(root, color_lib["Profile"], system_lib.Profile),
