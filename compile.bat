@@ -1,0 +1,1 @@
+pyinstaller --noconfirm --onedir --console --icon "Ressources/ico.ico" --add-data "Ressources;Ressources/" --name "Micrate_Launcher" main.py

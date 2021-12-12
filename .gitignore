@@ -1,9 +1,8 @@
 
 /.idea/
 *__pycache__*
-/accounts/
-/java/
-/session/
-/settings/
-/Minecraft/
+/data/
 /logs/
+/build/
+/dist/
+Micrate_Launcher.spec
