@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox as messagebox
 from .DataMenu import DataMenu
-from .Lang import lang
+from ..Lang import lang
 
 
 class ConfigMenu(DataMenu):

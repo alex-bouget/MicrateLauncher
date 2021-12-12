@@ -1,6 +1,6 @@
 from tkinter import *
 from .DataMenu import DataMenu
-from .Lang import lang
+from ..Lang import lang
 from urllib.request import Request, urlopen
 from PIL import Image, ImageTk
 import tkinter.filedialog as filedialog

@@ -2,7 +2,7 @@ from tkinter import *
 from .DataMenu import DataMenu
 import tkinter.messagebox as messagebox
 from .Useless import UselessAsker
-from .Lang import lang
+from ..Lang import lang
 
 
 class SessionMenu(DataMenu):

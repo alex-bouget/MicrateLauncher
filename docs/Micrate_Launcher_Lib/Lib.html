@@ -29,12 +29,69 @@
 
                     <h2>Submodules</h2>
                     <ul>
-                            <li><a href="Lib/Lib.html">Micrate_Launcher_Lib.Lib.Lib</a></li>
                             <li><a href="Lib/MM1_Lib.html">Micrate_Launcher_Lib.Lib.MM1_Lib</a></li>
                             <li><a href="Lib/Profile.html">Micrate_Launcher_Lib.Lib.Profile</a></li>
                             <li><a href="Lib/Session.html">Micrate_Launcher_Lib.Lib.Session</a></li>
                             <li><a href="Lib/Version.html">Micrate_Launcher_Lib.Lib.Version</a></li>
                     </ul>
+
+                    <h2>API Documentation</h2>
+                        <ul class="memberlist">
+            <li>
+                    <a class="function" href="#empty">empty</a>
+            </li>
+            <li>
+                    <a class="class" href="#MicrateLib">MicrateLib</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#MicrateLib.__init__">MicrateLib</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.MinecraftFolder">MinecraftFolder</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.JavaFolder">JavaFolder</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.SessionFolder">SessionFolder</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.ProfileFolder">ProfileFolder</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.SettingsFolder">SettingsFolder</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.Profile">Profile</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.Version">Version</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.Session">Session</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#MicrateLib.settings_starting">settings_starting</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MicrateLib.start_mc">start_mc</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MicrateLib.create_config">create_config</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MicrateLib.set_config">set_config</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MicrateLib.get_all_config">get_all_config</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#MicrateLib.delete_config">delete_config</a>
+                        </li>
+                </ul>
+
+            </li>
+    </ul>
 
 
 
@@ -51,8 +108,682 @@
 <a href="./../Micrate_Launcher_Lib.html">Micrate_Launcher_Lib</a><wbr>.Lib    </h1>
 
                 
-                
+                        <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">jdk</span> <span class="kn">import</span> <span class="n">install</span> <span class="k">as</span> <span class="n">jdk_install</span>
+<span class="kn">from</span> <span class="nn">.Profile</span> <span class="kn">import</span> <span class="n">ProfileLib</span>
+<span class="kn">from</span> <span class="nn">.Session</span> <span class="kn">import</span> <span class="n">SessionLib</span>
+<span class="kn">from</span> <span class="nn">.Version</span> <span class="kn">import</span> <span class="n">VersionLib</span>
+<span class="kn">from</span> <span class="nn">minecraft_launcher_lib</span> <span class="kn">import</span> <span class="n">install</span><span class="p">,</span> <span class="n">command</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+
+<span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; empty function for exception&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<span class="sd">&quot;&quot;&quot;Library for Micrate Launcher&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">MicrateLib</span><span class="p">:</span>
+    <span class="n">MinecraftFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">JavaFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">SessionFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">ProfileFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">SettingsFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">Profile</span><span class="p">:</span> <span class="n">ProfileLib</span>
+    <span class="sd">&quot;&quot;&quot;Library of the Profile&quot;&quot;&quot;</span>
+    <span class="n">Version</span><span class="p">:</span> <span class="n">VersionLib</span>
+    <span class="sd">&quot;&quot;&quot;Library of the Version&quot;&quot;&quot;</span>
+    <span class="n">Session</span><span class="p">:</span> <span class="n">SessionLib</span>
+    <span class="sd">&quot;&quot;&quot;Library of the Session&quot;&quot;&quot;</span>
+    <span class="n">settings_starting</span><span class="p">:</span> <span class="nb">list</span>
+    <span class="sd">&quot;&quot;&quot;List for start minecraft&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profile_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">minecraft_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">java_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">settings_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MinecraftFolder</span> <span class="o">=</span> <span class="n">minecraft_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">JavaFolder</span> <span class="o">=</span> <span class="n">java_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SessionFolder</span> <span class="o">=</span> <span class="n">session_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ProfileFolder</span> <span class="o">=</span> <span class="n">profile_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span> <span class="o">=</span> <span class="n">settings_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span> <span class="o">=</span> <span class="n">ProfileLib</span><span class="p">(</span><span class="n">profile_folder</span><span class="p">,</span> <span class="n">settings_folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="n">VersionLib</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Session</span> <span class="o">=</span> <span class="n">SessionLib</span><span class="p">(</span><span class="n">session_folder</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start_mc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start Minecraft</span>
+<span class="sd">        Get login_data, session and the version, download java and Minecraft and start the Game</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">get_minecraft_java_version</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">,</span> <span class="s2">&quot;versions&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">version</span><span class="o">+</span><span class="s2">&quot;.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="s2">&quot;javaVersion&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">js</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="s2">&quot;inheritsFrom&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">js</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No javaVersion&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">get_minecraft_java_version</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">,</span> <span class="n">js</span><span class="p">[</span><span class="s2">&quot;inheritsFrom&quot;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">js</span><span class="p">[</span><span class="s2">&quot;javaVersion&quot;</span><span class="p">][</span><span class="s2">&quot;majorVersion&quot;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_starting</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">login_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">get_session</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">version</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">micrate_self</span><span class="p">:</span> <span class="n">MicrateLib</span><span class="p">,</span> <span class="n">call_back</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">install</span><span class="o">.</span><span class="n">install_minecraft_version</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                              <span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span> <span class="n">call_back</span><span class="p">)</span>
+            <span class="n">jvm_version</span> <span class="o">=</span> <span class="n">get_minecraft_java_version</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span>
+                                                     <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">jvm_data</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">i</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;java_v&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="n">jvm_version</span>
+            <span class="p">]</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jvm_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setStatus&quot;</span><span class="p">](</span><span class="s2">&quot;Download Java &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">jvm_version</span><span class="p">))</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setMax&quot;</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setProgress&quot;</span><span class="p">](</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">jvm_using</span> <span class="o">=</span> <span class="n">jdk_install</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">jvm_version</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">)</span>
+                <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jvm_using</span><span class="p">,</span> <span class="s2">&quot;java_v&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jvm_version</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">jvm_using</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">,</span> <span class="n">jvm_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">minecraft_command_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;accessToken&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;executablePath&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jvm_using</span><span class="p">,</span>
+                                               <span class="s2">&quot;bin&quot;</span><span class="p">,</span>
+                                               <span class="s2">&quot;java&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;launcherName&quot;</span><span class="p">:</span> <span class="s2">&quot;Micrate_Launcher&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;launcherVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;gameDirectory&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">SessionFolder</span><span class="p">,</span>
+                                              <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="s2">&quot;jvmArguments&quot;</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span>
+                                                  <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+
+            <span class="n">micrate_command</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span>\
+                <span class="n">get_minecraft_command</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                      <span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span>
+                                      <span class="n">minecraft_command_data</span><span class="p">)</span>
+            <span class="n">call_back</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Finish&quot;</span><span class="p">,</span> <span class="n">empty</span><span class="p">)(</span><span class="n">micrate_command</span><span class="p">)</span>
+
+        <span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="k">lambda</span> <span class="n">call</span><span class="o">=</span><span class="n">callback</span><span class="p">:</span> <span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">call</span><span class="p">))</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">create_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a game config (user, session, version)&quot;&quot;&quot;</span>
+        <span class="n">settings_config</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">login_data</span><span class="p">[</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">get_session</span><span class="p">(),</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">version</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings_config</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">settings_config</span><span class="p">}</span>
+            <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dic</span><span class="p">))</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a config&quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">settings_config</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">set_profile</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">key</span>
+                    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">all_profile</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">settings_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">set_session</span><span class="p">(</span><span class="n">settings_config</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">set_version</span><span class="p">(</span><span class="n">settings_config</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_all_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Get the saved config&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">delete_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete a config&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
             </section>
+                <section id="empty">
+                            <div class="attr function"><a class="headerlink" href="#empty">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">empty</span><span class="signature">(arg)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; empty function for exception&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>empty function for exception</p>
+</div>
+
+
+                </section>
+                <section id="MicrateLib">
+                                <div class="attr class">
+        <a class="headerlink" href="#MicrateLib">#&nbsp;&nbsp</a>
+
+        
+        <span class="def">class</span>
+        <span class="name">MicrateLib</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MicrateLib</span><span class="p">:</span>
+    <span class="n">MinecraftFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">JavaFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">SessionFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">ProfileFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">SettingsFolder</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;Folder for the library&quot;&quot;&quot;</span>
+    <span class="n">Profile</span><span class="p">:</span> <span class="n">ProfileLib</span>
+    <span class="sd">&quot;&quot;&quot;Library of the Profile&quot;&quot;&quot;</span>
+    <span class="n">Version</span><span class="p">:</span> <span class="n">VersionLib</span>
+    <span class="sd">&quot;&quot;&quot;Library of the Version&quot;&quot;&quot;</span>
+    <span class="n">Session</span><span class="p">:</span> <span class="n">SessionLib</span>
+    <span class="sd">&quot;&quot;&quot;Library of the Session&quot;&quot;&quot;</span>
+    <span class="n">settings_starting</span><span class="p">:</span> <span class="nb">list</span>
+    <span class="sd">&quot;&quot;&quot;List for start minecraft&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profile_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">minecraft_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">java_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">settings_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MinecraftFolder</span> <span class="o">=</span> <span class="n">minecraft_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">JavaFolder</span> <span class="o">=</span> <span class="n">java_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SessionFolder</span> <span class="o">=</span> <span class="n">session_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ProfileFolder</span> <span class="o">=</span> <span class="n">profile_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span> <span class="o">=</span> <span class="n">settings_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span> <span class="o">=</span> <span class="n">ProfileLib</span><span class="p">(</span><span class="n">profile_folder</span><span class="p">,</span> <span class="n">settings_folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="n">VersionLib</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Session</span> <span class="o">=</span> <span class="n">SessionLib</span><span class="p">(</span><span class="n">session_folder</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start_mc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start Minecraft</span>
+<span class="sd">        Get login_data, session and the version, download java and Minecraft and start the Game</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">get_minecraft_java_version</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">,</span> <span class="s2">&quot;versions&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">version</span><span class="o">+</span><span class="s2">&quot;.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="s2">&quot;javaVersion&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">js</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="s2">&quot;inheritsFrom&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">js</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No javaVersion&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">get_minecraft_java_version</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">,</span> <span class="n">js</span><span class="p">[</span><span class="s2">&quot;inheritsFrom&quot;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">js</span><span class="p">[</span><span class="s2">&quot;javaVersion&quot;</span><span class="p">][</span><span class="s2">&quot;majorVersion&quot;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_starting</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">login_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">get_session</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">version</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">micrate_self</span><span class="p">:</span> <span class="n">MicrateLib</span><span class="p">,</span> <span class="n">call_back</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">install</span><span class="o">.</span><span class="n">install_minecraft_version</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                              <span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span> <span class="n">call_back</span><span class="p">)</span>
+            <span class="n">jvm_version</span> <span class="o">=</span> <span class="n">get_minecraft_java_version</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span>
+                                                     <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">jvm_data</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">i</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;java_v&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="n">jvm_version</span>
+            <span class="p">]</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jvm_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setStatus&quot;</span><span class="p">](</span><span class="s2">&quot;Download Java &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">jvm_version</span><span class="p">))</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setMax&quot;</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setProgress&quot;</span><span class="p">](</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">jvm_using</span> <span class="o">=</span> <span class="n">jdk_install</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">jvm_version</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">)</span>
+                <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jvm_using</span><span class="p">,</span> <span class="s2">&quot;java_v&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jvm_version</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">jvm_using</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">,</span> <span class="n">jvm_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">minecraft_command_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;accessToken&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;executablePath&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jvm_using</span><span class="p">,</span>
+                                               <span class="s2">&quot;bin&quot;</span><span class="p">,</span>
+                                               <span class="s2">&quot;java&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;launcherName&quot;</span><span class="p">:</span> <span class="s2">&quot;Micrate_Launcher&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;launcherVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;gameDirectory&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">SessionFolder</span><span class="p">,</span>
+                                              <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="s2">&quot;jvmArguments&quot;</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span>
+                                                  <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+
+            <span class="n">micrate_command</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span>\
+                <span class="n">get_minecraft_command</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                      <span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span>
+                                      <span class="n">minecraft_command_data</span><span class="p">)</span>
+            <span class="n">call_back</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Finish&quot;</span><span class="p">,</span> <span class="n">empty</span><span class="p">)(</span><span class="n">micrate_command</span><span class="p">)</span>
+
+        <span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="k">lambda</span> <span class="n">call</span><span class="o">=</span><span class="n">callback</span><span class="p">:</span> <span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">call</span><span class="p">))</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">create_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a game config (user, session, version)&quot;&quot;&quot;</span>
+        <span class="n">settings_config</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">login_data</span><span class="p">[</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">get_session</span><span class="p">(),</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">version</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings_config</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">settings_config</span><span class="p">}</span>
+            <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dic</span><span class="p">))</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a config&quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">settings_config</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">set_profile</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">key</span>
+                    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">all_profile</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">settings_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">set_session</span><span class="p">(</span><span class="n">settings_config</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">set_version</span><span class="p">(</span><span class="n">settings_config</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_all_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Get the saved config&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">delete_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete a config&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+    
+
+                            <div id="MicrateLib.__init__" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MicrateLib.__init__">#&nbsp;&nbsp</a>
+
+        
+            <span class="name">MicrateLib</span><span class="signature">(
+    profile_folder: str,
+    session_folder: str,
+    minecraft_folder: str,
+    java_folder: str,
+    settings_folder: str
+)</span>
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profile_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">minecraft_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">java_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">settings_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MinecraftFolder</span> <span class="o">=</span> <span class="n">minecraft_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">JavaFolder</span> <span class="o">=</span> <span class="n">java_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SessionFolder</span> <span class="o">=</span> <span class="n">session_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ProfileFolder</span> <span class="o">=</span> <span class="n">profile_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span> <span class="o">=</span> <span class="n">settings_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span> <span class="o">=</span> <span class="n">ProfileLib</span><span class="p">(</span><span class="n">profile_folder</span><span class="p">,</span> <span class="n">settings_folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="n">VersionLib</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Session</span> <span class="o">=</span> <span class="n">SessionLib</span><span class="p">(</span><span class="n">session_folder</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Constructor</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.MinecraftFolder" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.MinecraftFolder">#&nbsp;&nbsp</a>
+
+        <span class="name">MinecraftFolder</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>Folder for the library</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.JavaFolder" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.JavaFolder">#&nbsp;&nbsp</a>
+
+        <span class="name">JavaFolder</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>Folder for the library</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.SessionFolder" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.SessionFolder">#&nbsp;&nbsp</a>
+
+        <span class="name">SessionFolder</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>Folder for the library</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.ProfileFolder" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.ProfileFolder">#&nbsp;&nbsp</a>
+
+        <span class="name">ProfileFolder</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>Folder for the library</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.SettingsFolder" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.SettingsFolder">#&nbsp;&nbsp</a>
+
+        <span class="name">SettingsFolder</span><span class="annotation">: str</span>
+    </div>
+
+            <div class="docstring"><p>Folder for the library</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.Profile" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.Profile">#&nbsp;&nbsp</a>
+
+        <span class="name">Profile</span><span class="annotation">: <a href="Lib/Profile.html#ProfileLib">Micrate_Launcher_Lib.Lib.Profile.ProfileLib</a></span>
+    </div>
+
+            <div class="docstring"><p>Library of the Profile</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.Version" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.Version">#&nbsp;&nbsp</a>
+
+        <span class="name">Version</span><span class="annotation">: <a href="Lib/Version.html#VersionLib">Micrate_Launcher_Lib.Lib.Version.VersionLib</a></span>
+    </div>
+
+            <div class="docstring"><p>Library of the Version</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.Session" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.Session">#&nbsp;&nbsp</a>
+
+        <span class="name">Session</span><span class="annotation">: <a href="Lib/Session.html#SessionLib">Micrate_Launcher_Lib.Lib.Session.SessionLib</a></span>
+    </div>
+
+            <div class="docstring"><p>Library of the Session</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.settings_starting" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#MicrateLib.settings_starting">#&nbsp;&nbsp</a>
+
+        <span class="name">settings_starting</span><span class="annotation">: list</span>
+    </div>
+
+            <div class="docstring"><p>List for start minecraft</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.start_mc" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MicrateLib.start_mc">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">start_mc</span><span class="signature">(self, callback: dict)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">start_mc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start Minecraft</span>
+<span class="sd">        Get login_data, session and the version, download java and Minecraft and start the Game</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">get_minecraft_java_version</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">,</span> <span class="s2">&quot;versions&quot;</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">version</span><span class="o">+</span><span class="s2">&quot;.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="s2">&quot;javaVersion&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">js</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="s2">&quot;inheritsFrom&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">js</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No javaVersion&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">get_minecraft_java_version</span><span class="p">(</span><span class="n">minecraft_folder</span><span class="p">,</span> <span class="n">js</span><span class="p">[</span><span class="s2">&quot;inheritsFrom&quot;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">js</span><span class="p">[</span><span class="s2">&quot;javaVersion&quot;</span><span class="p">][</span><span class="s2">&quot;majorVersion&quot;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_starting</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">login_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">get_session</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">version</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">micrate_self</span><span class="p">:</span> <span class="n">MicrateLib</span><span class="p">,</span> <span class="n">call_back</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">install</span><span class="o">.</span><span class="n">install_minecraft_version</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                              <span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span> <span class="n">call_back</span><span class="p">)</span>
+            <span class="n">jvm_version</span> <span class="o">=</span> <span class="n">get_minecraft_java_version</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span>
+                                                     <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">jvm_data</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">i</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;java_v&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="n">jvm_version</span>
+            <span class="p">]</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jvm_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setStatus&quot;</span><span class="p">](</span><span class="s2">&quot;Download Java &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">jvm_version</span><span class="p">))</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setMax&quot;</span><span class="p">](</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">call_back</span><span class="p">[</span><span class="s2">&quot;setProgress&quot;</span><span class="p">](</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">jvm_using</span> <span class="o">=</span> <span class="n">jdk_install</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="n">jvm_version</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">)</span>
+                <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jvm_using</span><span class="p">,</span> <span class="s2">&quot;java_v&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">jvm_version</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">jvm_using</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">JavaFolder</span><span class="p">,</span> <span class="n">jvm_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">minecraft_command_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;accessToken&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;executablePath&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jvm_using</span><span class="p">,</span>
+                                               <span class="s2">&quot;bin&quot;</span><span class="p">,</span>
+                                               <span class="s2">&quot;java&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;launcherName&quot;</span><span class="p">:</span> <span class="s2">&quot;Micrate_Launcher&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;launcherVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;gameDirectory&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">SessionFolder</span><span class="p">,</span>
+                                              <span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="s2">&quot;jvmArguments&quot;</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span>
+                                                  <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+
+            <span class="n">micrate_command</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span>\
+                <span class="n">get_minecraft_command</span><span class="p">(</span><span class="n">micrate_self</span><span class="o">.</span><span class="n">settings_starting</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                      <span class="n">micrate_self</span><span class="o">.</span><span class="n">MinecraftFolder</span><span class="p">,</span>
+                                      <span class="n">minecraft_command_data</span><span class="p">)</span>
+            <span class="n">call_back</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Finish&quot;</span><span class="p">,</span> <span class="n">empty</span><span class="p">)(</span><span class="n">micrate_command</span><span class="p">)</span>
+
+        <span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="k">lambda</span> <span class="n">call</span><span class="o">=</span><span class="n">callback</span><span class="p">:</span> <span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">call</span><span class="p">))</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Start Minecraft
+Get login_data, session and the version, download java and Minecraft and start the Game</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.create_config" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MicrateLib.create_config">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">create_config</span><span class="signature">(self, name: str)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">create_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a game config (user, session, version)&quot;&quot;&quot;</span>
+        <span class="n">settings_config</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">login_data</span><span class="p">[</span><span class="s2">&quot;selectedProfile&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">get_session</span><span class="p">(),</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">version</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings_config</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">settings_config</span><span class="p">}</span>
+            <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dic</span><span class="p">))</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Create a game config (user, session, version)</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.set_config" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MicrateLib.set_config">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">set_config</span><span class="signature">(self, name: str)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">set_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a config&quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">settings_config</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">set_profile</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">key</span>
+                    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Profile</span><span class="o">.</span><span class="n">all_profile</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">settings_config</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">set_session</span><span class="p">(</span><span class="n">settings_config</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="o">.</span><span class="n">set_version</span><span class="p">(</span><span class="n">settings_config</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Load a config</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.get_all_config" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MicrateLib.get_all_config">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">get_all_config</span><span class="signature">(self) -&gt; &lt;method &#39;items&#39; of &#39;dict&#39; objects&gt;</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">get_all_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Get the saved config&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Get the saved config</p>
+</div>
+
+
+                            </div>
+                            <div id="MicrateLib.delete_config" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#MicrateLib.delete_config">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">delete_config</span><span class="signature">(self, name: str)</span>:
+    </div>
+
+                <details>
+            <summary>View Source</summary>
+            <div class="codehilite"><pre><span></span>    <span class="k">def</span> <span class="nf">delete_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete a config&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SettingsFolder</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Delete a config</p>
+</div>
+
+
+                            </div>
+                </section>
     </main>
 <script>
     function escapeHTML(html) {

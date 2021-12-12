@@ -1,5 +1,5 @@
 from tkinter import *
-from .Lang import lang
+from ..Lang import lang
 from .DataMenu import DataMenu2
 
 

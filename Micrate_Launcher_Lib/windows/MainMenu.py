@@ -1,5 +1,5 @@
 from tkinter import *
-from .Lang import lang
+from ..Lang import lang
 from urllib.request import Request, urlopen
 from PIL import Image, ImageTk
 from .Useless import UselessAsker

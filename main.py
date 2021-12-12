@@ -1,4 +1,4 @@
-from Micrate_Launcher_Lib.Micrate_Launcher import MicrateLauncher
+from Micrate_Launcher_Lib import MicrateLauncher
 
 
 if __name__ == "__main__":
