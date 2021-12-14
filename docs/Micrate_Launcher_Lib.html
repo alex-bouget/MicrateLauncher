@@ -143,8 +143,14 @@ Micrate_Launcher_Lib    </h1>
                 <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Folders</span><span class="o">.</span><span class="n">get_folder</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">),</span> <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">)):</span>
             <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Folders</span><span class="o">.</span><span class="n">get_folder</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">),</span> <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-                <span class="s2">&quot;-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20&quot;</span> <span class="o">+</span>
-                <span class="s2">&quot; -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;-Xmx2G &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:+UnlockExperimentalVMOptions &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:+UseG1GC -XX:G1NewSizePercent=20 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:G1ReservePercent=20 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:MaxGCPauseMillis=50 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:G1HeapRegionSize=32M &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;log4j2.formatMsgNoLookups&quot;</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Windows</span> <span class="o">=</span> <span class="n">MicrateWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lib</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Color</span><span class="p">)</span>  <span class="c1"># load Micrate windows</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Configure&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reload</span><span class="p">)</span>
@@ -220,8 +226,14 @@ Micrate_Launcher_Lib    </h1>
                 <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Folders</span><span class="o">.</span><span class="n">get_folder</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">),</span> <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">)):</span>
             <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Folders</span><span class="o">.</span><span class="n">get_folder</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">),</span> <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-                <span class="s2">&quot;-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20&quot;</span> <span class="o">+</span>
-                <span class="s2">&quot; -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;-Xmx2G &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:+UnlockExperimentalVMOptions &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:+UseG1GC -XX:G1NewSizePercent=20 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:G1ReservePercent=20 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:MaxGCPauseMillis=50 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:G1HeapRegionSize=32M &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;log4j2.formatMsgNoLookups&quot;</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Windows</span> <span class="o">=</span> <span class="n">MicrateWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lib</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Color</span><span class="p">)</span>  <span class="c1"># load Micrate windows</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Configure&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reload</span><span class="p">)</span>
@@ -288,8 +300,14 @@ of an application. It has an associated Tcl interpreter.</p>
                 <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Folders</span><span class="o">.</span><span class="n">get_folder</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">),</span> <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">)):</span>
             <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Folders</span><span class="o">.</span><span class="n">get_folder</span><span class="p">(</span><span class="s2">&quot;settings&quot;</span><span class="p">),</span> <span class="s2">&quot;JVMarg.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-                <span class="s2">&quot;-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20&quot;</span> <span class="o">+</span>
-                <span class="s2">&quot; -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;-Xmx2G &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:+UnlockExperimentalVMOptions &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:+UseG1GC -XX:G1NewSizePercent=20 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:G1ReservePercent=20 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:MaxGCPauseMillis=50 &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;-XX:G1HeapRegionSize=32M &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;log4j2.formatMsgNoLookups&quot;</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Windows</span> <span class="o">=</span> <span class="n">MicrateWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lib</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Color</span><span class="p">)</span>  <span class="c1"># load Micrate windows</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Configure&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reload</span><span class="p">)</span>
