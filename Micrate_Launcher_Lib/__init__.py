@@ -57,8 +57,13 @@ class MicrateLauncher(Tk):
                 "{}")
         if not os.path.isfile(os.path.join(self.Folders.get_folder("settings"), "JVMarg.txt")):
             open(os.path.join(self.Folders.get_folder("settings"), "JVMarg.txt"), "w").write(
-                "-Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20" +
-                " -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M")
+                "-Xmx2G " +
+                "-XX:+UnlockExperimentalVMOptions " +
+                "-XX:+UseG1GC -XX:G1NewSizePercent=20 " +
+                "-XX:G1ReservePercent=20 " +
+                "-XX:MaxGCPauseMillis=50 " +
+                "-XX:G1HeapRegionSize=32M " +
+                "log4j2.formatMsgNoLookups")
 
         self.Windows = MicrateWindow(self, self.Lib, self.Color)  # load Micrate windows
         self.bind("<Configure>", self.reload)
