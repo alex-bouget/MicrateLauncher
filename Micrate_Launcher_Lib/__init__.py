@@ -63,7 +63,7 @@ class MicrateLauncher(Tk):
                 "-XX:G1ReservePercent=20 " +
                 "-XX:MaxGCPauseMillis=50 " +
                 "-XX:G1HeapRegionSize=32M " +
-                "log4j2.formatMsgNoLookups"
+                "Dlog4j2.formatMsgNoLookups=true"
             )
 
         self.Windows = MicrateWindow(self, self.Lib, self.Color)  # load Micrate windows
