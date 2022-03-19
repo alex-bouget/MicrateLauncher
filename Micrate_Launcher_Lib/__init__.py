@@ -46,7 +46,7 @@ class MicrateLauncher(Tk):
         self.Lib = MicrateLib(self.Folders.get_folder("accounts"),
                               self.Folders.get_folder("session"),
                               self.Folders.get_folder("Minecraft"),
-                              self.Folders.get_folder("settings"),
+                              self.Folders.get_folder("settings")
                               )  # load Micrate library
         #  create default file
         if os.path.isfile(os.path.join(self.Folders.get_folder("settings"), "config.txt")):

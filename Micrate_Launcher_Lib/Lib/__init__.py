@@ -35,7 +35,7 @@ class MicrateLib:
     """List for start minecraft"""
 
     def __init__(self, profile_folder: str, session_folder: str,
-                 minecraft_folder: str, java_folder: str, settings_folder: str):
+                 minecraft_folder: str, settings_folder: str):
         """Constructor"""
         self.MinecraftFolder = minecraft_folder
         self.SessionFolder = session_folder
