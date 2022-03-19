@@ -13,5 +13,4 @@ WARNING:
     * Config for save a couple of **User, Session, Version**
 * [Documentation](https://mistermine01.github.io/MicrateLauncher)
 * Credit
-    * [minecraft_launcher_lib](https://pypi.org/project/minecraft-launcher-lib/) (modified)
-    * [install-jdk](https://pypi.org/project/install-jdk/)
+    * [minecraft_launcher_lib](https://pypi.org/project/minecraft-launcher-lib/)

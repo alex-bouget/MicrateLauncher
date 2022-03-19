@@ -35,18 +35,17 @@ class MicrateLauncher(Tk):
             dico = {}
             for arg in argument:
                 dico[arg.split("=")[0]] = arg.split("=")[1]
-            for folders in ["accounts", "session", "Minecraft", "java", "settings"]:
+            for folders in ["accounts", "session", "Minecraft", "settings"]:
                 try:  # add the folder or use default folders for each argument
                     self.Folders.add_folder(folders, dico[folders])
                 except KeyError:
                     self.Folders.add_folder(folders, folders)
         else:  # use default folder
-            for folders in ["accounts", "session", "Minecraft", "java", "settings"]:
+            for folders in ["accounts", "session", "Minecraft", "settings"]:
                 self.Folders.add_folder(folders, folders)
         self.Lib = MicrateLib(self.Folders.get_folder("accounts"),
                               self.Folders.get_folder("session"),
                               self.Folders.get_folder("Minecraft"),
-                              self.Folders.get_folder("java"),
                               self.Folders.get_folder("settings"),
                               )  # load Micrate library
         #  create default file

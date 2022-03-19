@@ -19,8 +19,6 @@ def empty(arg):
 class MicrateLib:
     MinecraftFolder: str
     """Folder for the library"""
-    JavaFolder: str
-    """Folder for the library"""
     SessionFolder: str
     """Folder for the library"""
     ProfileFolder: str
@@ -40,7 +38,6 @@ class MicrateLib:
                  minecraft_folder: str, java_folder: str, settings_folder: str):
         """Constructor"""
         self.MinecraftFolder = minecraft_folder
-        self.JavaFolder = java_folder
         self.SessionFolder = session_folder
         self.ProfileFolder = profile_folder
         self.SettingsFolder = settings_folder
@@ -66,29 +63,10 @@ class MicrateLib:
         def start(micrate_self: MicrateLib, call_back: dict):
             install.install_minecraft_version(micrate_self.settings_starting[2],
                                               micrate_self.MinecraftFolder, call_back)
-            jvm_version = get_minecraft_java_version(micrate_self.MinecraftFolder,
-                                                     micrate_self.settings_starting[2])
-            jvm_data = [
-                i
-                for i in os.listdir(micrate_self.JavaFolder)
-                if open(os.path.join(micrate_self.JavaFolder, i, "java_v")).read() == jvm_version
-            ]
-
-            if len(jvm_data) == 0:
-                call_back["setStatus"]("Download Java " + str(jvm_version))
-                call_back["setMax"](1)
-                call_back["setProgress"](0)
-                jvm_using = jdk_install(version=jvm_version, path=micrate_self.JavaFolder)
-                open(os.path.join(jvm_using, "java_v"), "w").write(jvm_version)
-            else:
-                jvm_using = os.path.join(micrate_self.JavaFolder, jvm_data[0])
             minecraft_command_data = {
                 "username": micrate_self.settings_starting[0]["selectedProfile"]["name"],
                 "uuid": micrate_self.settings_starting[0]["selectedProfile"]["id"],
                 "token": micrate_self.settings_starting[0]["accessToken"],
-                "executablePath": os.path.join(jvm_using,
-                                               "bin",
-                                               "java"),
                 "launcherName": "Micrate_Launcher",
                 "launcherVersion": "2.0",
                 "gameDirectory": os.path.join(micrate_self.SessionFolder,
