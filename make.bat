@@ -1,1 +1,0 @@
-pdoc -o ./docs ./Micrate_Launcher_Lib
