@@ -1,8 +1,1 @@
-
-/.idea/
-*__pycache__*
-/data/
-/logs/
-/build/
-/dist/
-Micrate_Launcher.spec
+node_modules
