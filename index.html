@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="src/styles.css">
     <title>Loader</title>
     <script defer>
-        fetch("src/profile.html")
+        fetch("src/home.html")
             .then((value) => value.text())
             .then((value) => {
                 document.getElementById("window").innerHTML = value
@@ -28,10 +28,10 @@
             class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Session</button>
         <button id="Version"
             class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Version</button>
+        <button id="Version"
+            class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Config</button>
     </div>
-    <div id="window" class="flex h-5/6 justify-center">
-
-    </div>
+    <div id="window" class="flex h-5/6 justify-center"></div>
 </body>
 
 </html>
