@@ -7,13 +7,22 @@
     <link rel="stylesheet" href="src/styles.css">
     <title>Loader</title>
     <script defer>
-        fetch("src/connection_set.html")
+        fetch("src/profile.html")
             .then((value) => value.text())
             .then((value) => {
-                document.body.innerHTML = value
+                document.getElementById("window").innerHTML = value
             })
     </script>
 </head>
-<body class="flex h-screen align-middle justify-center">
+<body class="flex flex-col h-screen align-middle justify-center bg-background backdrop-blur-sm backdrop-brightness-50 bg-center">
+    <div id="button-div" class="self-start place-self-start w-full h-1/6 flex bg-white bg-opacity-30  backdrop-blur-md drop-shadow-2xl justify-evenly">
+        <button id="Main Menu" class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Home</button>
+        <button id="Profile" class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Profile</button>
+        <button id="Session" class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Session</button>
+        <button id="Version" class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Version</button>
+    </div>
+    <div id="window" class="flex h-screen justify-center">
+
+    </div>
 </body>
 </html>

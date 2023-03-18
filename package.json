@@ -18,7 +18,8 @@
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.15",
     "postcss-cli": "^10.1.0",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
     "concurrently": "^7.6.0"
