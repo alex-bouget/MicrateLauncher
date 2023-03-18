@@ -7,31 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles.css">
     <title>Loader</title>
-    <script defer>
-        fetch("src/home.html")
-            .then((value) => value.text())
-            .then((value) => {
-                document.getElementById("window").innerHTML = value
-            })
-    </script>
 </head>
 
 <body
     class="flex flex-col h-screen align-middle justify-center bg-background backdrop-blur-sm backdrop-brightness-50 bg-center">
     <div id="button-div"
         class="self-start place-self-start w-full h-1/6 flex bg-white bg-opacity-30  backdrop-blur-md drop-shadow-2xl justify-evenly">
-        <button id="Main Menu"
+        <button id="home"
             class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Home</button>
-        <button id="Profile"
+        <button id="profile"
             class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Profile</button>
-        <button id="Session"
+        <button id="session-version-config"
             class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Session</button>
-        <button id="Version"
+        <button id="session-version-config"
             class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Version</button>
-        <button id="Version"
+        <button id="session-version-config"
             class="self-center place-self-center w-1/6 h-1/2 bg-lime-600 text-white bg-opacity-50 hover:drop-shadow-2xl rounded-md hover:bg-opacity-75">Config</button>
     </div>
     <div id="window" class="flex h-5/6 justify-center"></div>
+    <script defer>
+        const changeTo = (id) => {
+            fetch(`src/${id}.html`)
+                .then((value) => value.text())
+                .then((value) => {
+                    document.getElementById("window").innerHTML = value
+                })
+        }
+        const buttons = document.getElementsByTagName("button");
+        console.log(buttons);
+        [...buttons].forEach((button) => {
+            button.addEventListener("click", () => {
+                changeTo(button.id)
+            })
+        })
+    </script>
 </body>
 
 </html>
